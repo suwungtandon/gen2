@@ -18,6 +18,29 @@
     
     <!-- import the webpage's javascript file -->
     <!-- <script src="/script.js" defer></script> -->
+     <script>		
+      //wait until the page loads to perform the following
+      window.onload = function () 
+      {
+        var intervalLength = 20; //determines the speed of the animation (milliseconds to wait between ticks)
+        //define the scene, for ease of interacting with it
+        var scene = document.querySelector('a-scene');      
+        //bind variables to entities
+        var mySphere = document.getElementById('mySphere');     
+        var mySpherePosition = {};
+          mySpherePosition.x = 0;
+          mySpherePosition.y = 0;
+          mySpherePosition.z = 0;
+        //Timer for animations
+        setInterval(function()
+        {
+          //move the sphere
+          mySpherePosition.x = mySpherePosition.x + 1;
+          mySpherePosition.y = mySpherePosition.y + 1;
+          mySpherePosition.z = mySpherePosition.z + 1;
+          mySphere.setAttribute('rotation', mySpherePosition.x + ' ' + mySpherePosition.y + ' ' + mySpherePosition.z);
+        }
+        </script>
   </head>  
   <body>
     
@@ -25,7 +48,7 @@
     <a-scene shadow="type: pcfsoft" embedded  arjs='sourceType: webcam; debugUIEnabled: false;' debug>
       
           <a-marker preset="hiro" >
-            <a-entity   shadow="cast: true" gltf-model="https://akopadung.github.io/gen2/glb-model/mech_drone.glb" position="0 0 0" crossOrigin="anonymous" response-type="arraybuffer"
+            <a-entity id="mySphere" shadow="cast: true" gltf-model="https://akopadung.github.io/gen2/glb-model/mech_drone.glb" position="0 0 0" crossOrigin="anonymous" response-type="arraybuffer"
                 rotation="360 180 0" scale="0.01 0.01 0.01">
             </a-entity>
           </a-marker>
